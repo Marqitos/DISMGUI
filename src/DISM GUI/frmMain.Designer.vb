@@ -119,9 +119,35 @@ Partial Class frmMain
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.btnGetApps = New System.Windows.Forms.Button()
+        Me.TabPage8 = New System.Windows.Forms.TabPage()
+        Me.chkCaptureVerify = New System.Windows.Forms.CheckBox()
+        Me.btnAppend = New System.Windows.Forms.Button()
+        Me.cmbCompression = New System.Windows.Forms.ComboBox()
+        Me.lblCompression = New System.Windows.Forms.Label()
+        Me.lblName = New System.Windows.Forms.Label()
+        Me.txtName = New System.Windows.Forms.TextBox()
+        Me.btnCreate = New System.Windows.Forms.Button()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.btnCaptureDest = New System.Windows.Forms.Button()
+        Me.txtCaptureDest = New System.Windows.Forms.TextBox()
+        Me.txtCaptureSource = New System.Windows.Forms.TextBox()
+        Me.btnCaptureSrc = New System.Windows.Forms.Button()
+        Me.TabPage9 = New System.Windows.Forms.TabPage()
+        Me.chkApplyVerify = New System.Windows.Forms.CheckBox()
+        Me.cmbApplyIndex = New System.Windows.Forms.ComboBox()
+        Me.lblIndex = New System.Windows.Forms.Label()
+        Me.btnApply = New System.Windows.Forms.Button()
+        Me.lblDest = New System.Windows.Forms.Label()
+        Me.lblSource = New System.Windows.Forms.Label()
+        Me.btnBrowseDest = New System.Windows.Forms.Button()
+        Me.txtApplyDest = New System.Windows.Forms.TextBox()
+        Me.txtxApplySource = New System.Windows.Forms.TextBox()
+        Me.btnBrowseSource = New System.Windows.Forms.Button()
         Me.BackgroundWorkerDISMCommand = New System.ComponentModel.BackgroundWorker()
         Me.dlgOpenXML = New System.Windows.Forms.OpenFileDialog()
         Me.dlgOpenMSP = New System.Windows.Forms.OpenFileDialog()
+        Me.chkMountReadOnly = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -135,6 +161,8 @@ Partial Class frmMain
         Me.TabPage5.SuspendLayout()
         Me.TabPage6.SuspendLayout()
         Me.TabPage7.SuspendLayout()
+        Me.TabPage8.SuspendLayout()
+        Me.TabPage9.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtWIM
@@ -338,6 +366,8 @@ Partial Class frmMain
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Controls.Add(Me.TabPage7)
+        Me.TabControl1.Controls.Add(Me.TabPage8)
+        Me.TabControl1.Controls.Add(Me.TabPage9)
         Me.TabControl1.Location = New System.Drawing.Point(11, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -346,6 +376,7 @@ Partial Class frmMain
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.chkMountReadOnly)
         Me.TabPage1.Controls.Add(Me.btnDisplayWIMInfo)
         Me.TabPage1.Controls.Add(Me.btnOpenWIM)
         Me.TabPage1.Controls.Add(Me.Label3)
@@ -926,7 +957,7 @@ Partial Class frmMain
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Size = New System.Drawing.Size(655, 364)
         Me.TabPage7.TabIndex = 6
-        Me.TabPage7.Text = "Appiclation Servicing"
+        Me.TabPage7.Text = "Application Servicing"
         Me.TabPage7.UseVisualStyleBackColor = True
         '
         'btnChooseMSP
@@ -1033,8 +1064,259 @@ Partial Class frmMain
         Me.btnGetApps.Text = "Get Applications"
         Me.btnGetApps.UseVisualStyleBackColor = True
         '
+        'TabPage8
+        '
+        Me.TabPage8.Controls.Add(Me.chkCaptureVerify)
+        Me.TabPage8.Controls.Add(Me.btnAppend)
+        Me.TabPage8.Controls.Add(Me.cmbCompression)
+        Me.TabPage8.Controls.Add(Me.lblCompression)
+        Me.TabPage8.Controls.Add(Me.lblName)
+        Me.TabPage8.Controls.Add(Me.txtName)
+        Me.TabPage8.Controls.Add(Me.btnCreate)
+        Me.TabPage8.Controls.Add(Me.Label20)
+        Me.TabPage8.Controls.Add(Me.Label21)
+        Me.TabPage8.Controls.Add(Me.btnCaptureDest)
+        Me.TabPage8.Controls.Add(Me.txtCaptureDest)
+        Me.TabPage8.Controls.Add(Me.txtCaptureSource)
+        Me.TabPage8.Controls.Add(Me.btnCaptureSrc)
+        Me.TabPage8.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage8.Name = "TabPage8"
+        Me.TabPage8.Size = New System.Drawing.Size(655, 364)
+        Me.TabPage8.TabIndex = 7
+        Me.TabPage8.Text = "Capture Image"
+        Me.TabPage8.UseVisualStyleBackColor = True
+        '
+        'chkCaptureVerify
+        '
+        Me.chkCaptureVerify.AutoSize = True
+        Me.chkCaptureVerify.Location = New System.Drawing.Point(92, 126)
+        Me.chkCaptureVerify.Name = "chkCaptureVerify"
+        Me.chkCaptureVerify.Size = New System.Drawing.Size(52, 17)
+        Me.chkCaptureVerify.TabIndex = 46
+        Me.chkCaptureVerify.Text = "Verify"
+        Me.chkCaptureVerify.UseVisualStyleBackColor = True
+        '
+        'btnAppend
+        '
+        Me.btnAppend.Location = New System.Drawing.Point(525, 73)
+        Me.btnAppend.Name = "btnAppend"
+        Me.btnAppend.Size = New System.Drawing.Size(127, 64)
+        Me.btnAppend.TabIndex = 45
+        Me.btnAppend.Text = "&Append"
+        Me.btnAppend.UseVisualStyleBackColor = True
+        '
+        'cmbCompression
+        '
+        Me.cmbCompression.FormattingEnabled = True
+        Me.cmbCompression.Items.AddRange(New Object() {"None", "Fast", "Maximum"})
+        Me.cmbCompression.Location = New System.Drawing.Point(92, 99)
+        Me.cmbCompression.Name = "cmbCompression"
+        Me.cmbCompression.Size = New System.Drawing.Size(80, 21)
+        Me.cmbCompression.TabIndex = 44
+        '
+        'lblCompression
+        '
+        Me.lblCompression.AutoSize = True
+        Me.lblCompression.Location = New System.Drawing.Point(15, 105)
+        Me.lblCompression.Name = "lblCompression"
+        Me.lblCompression.Size = New System.Drawing.Size(70, 13)
+        Me.lblCompression.TabIndex = 43
+        Me.lblCompression.Text = "Compression:"
+        '
+        'lblName
+        '
+        Me.lblName.AutoSize = True
+        Me.lblName.Location = New System.Drawing.Point(47, 75)
+        Me.lblName.Name = "lblName"
+        Me.lblName.Size = New System.Drawing.Size(38, 13)
+        Me.lblName.TabIndex = 42
+        Me.lblName.Text = "Name:"
+        '
+        'txtName
+        '
+        Me.txtName.Location = New System.Drawing.Point(91, 72)
+        Me.txtName.Name = "txtName"
+        Me.txtName.Size = New System.Drawing.Size(295, 20)
+        Me.txtName.TabIndex = 34
+        '
+        'btnCreate
+        '
+        Me.btnCreate.Location = New System.Drawing.Point(525, 3)
+        Me.btnCreate.Name = "btnCreate"
+        Me.btnCreate.Size = New System.Drawing.Size(127, 64)
+        Me.btnCreate.TabIndex = 40
+        Me.btnCreate.Text = "&Create"
+        Me.btnCreate.UseVisualStyleBackColor = True
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(22, 49)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(63, 13)
+        Me.Label20.TabIndex = 41
+        Me.Label20.Text = "Destination:"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(41, 23)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(44, 13)
+        Me.Label21.TabIndex = 38
+        Me.Label21.Text = "Source:"
+        '
+        'btnCaptureDest
+        '
+        Me.btnCaptureDest.Location = New System.Drawing.Point(392, 44)
+        Me.btnCaptureDest.Name = "btnCaptureDest"
+        Me.btnCaptureDest.Size = New System.Drawing.Size(75, 23)
+        Me.btnCaptureDest.TabIndex = 39
+        Me.btnCaptureDest.Text = "Browse..."
+        Me.btnCaptureDest.UseVisualStyleBackColor = True
+        '
+        'txtCaptureDest
+        '
+        Me.txtCaptureDest.Location = New System.Drawing.Point(91, 46)
+        Me.txtCaptureDest.Name = "txtCaptureDest"
+        Me.txtCaptureDest.Size = New System.Drawing.Size(295, 20)
+        Me.txtCaptureDest.TabIndex = 37
+        '
+        'txtCaptureSource
+        '
+        Me.txtCaptureSource.Location = New System.Drawing.Point(91, 20)
+        Me.txtCaptureSource.Name = "txtCaptureSource"
+        Me.txtCaptureSource.Size = New System.Drawing.Size(295, 20)
+        Me.txtCaptureSource.TabIndex = 35
+        '
+        'btnCaptureSrc
+        '
+        Me.btnCaptureSrc.Location = New System.Drawing.Point(392, 18)
+        Me.btnCaptureSrc.Name = "btnCaptureSrc"
+        Me.btnCaptureSrc.Size = New System.Drawing.Size(75, 23)
+        Me.btnCaptureSrc.TabIndex = 36
+        Me.btnCaptureSrc.Text = "Browse..."
+        Me.btnCaptureSrc.UseVisualStyleBackColor = True
+        '
+        'TabPage9
+        '
+        Me.TabPage9.Controls.Add(Me.chkApplyVerify)
+        Me.TabPage9.Controls.Add(Me.cmbApplyIndex)
+        Me.TabPage9.Controls.Add(Me.lblIndex)
+        Me.TabPage9.Controls.Add(Me.btnApply)
+        Me.TabPage9.Controls.Add(Me.lblDest)
+        Me.TabPage9.Controls.Add(Me.lblSource)
+        Me.TabPage9.Controls.Add(Me.btnBrowseDest)
+        Me.TabPage9.Controls.Add(Me.txtApplyDest)
+        Me.TabPage9.Controls.Add(Me.txtxApplySource)
+        Me.TabPage9.Controls.Add(Me.btnBrowseSource)
+        Me.TabPage9.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage9.Name = "TabPage9"
+        Me.TabPage9.Size = New System.Drawing.Size(655, 364)
+        Me.TabPage9.TabIndex = 8
+        Me.TabPage9.Text = "Apply Image"
+        Me.TabPage9.UseVisualStyleBackColor = True
+        '
+        'chkApplyVerify
+        '
+        Me.chkApplyVerify.AutoSize = True
+        Me.chkApplyVerify.Location = New System.Drawing.Point(77, 103)
+        Me.chkApplyVerify.Name = "chkApplyVerify"
+        Me.chkApplyVerify.Size = New System.Drawing.Size(52, 17)
+        Me.chkApplyVerify.TabIndex = 41
+        Me.chkApplyVerify.Text = "Verify"
+        Me.chkApplyVerify.UseVisualStyleBackColor = True
+        '
+        'cmbApplyIndex
+        '
+        Me.cmbApplyIndex.FormattingEnabled = True
+        Me.cmbApplyIndex.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"})
+        Me.cmbApplyIndex.Location = New System.Drawing.Point(77, 75)
+        Me.cmbApplyIndex.Name = "cmbApplyIndex"
+        Me.cmbApplyIndex.Size = New System.Drawing.Size(30, 21)
+        Me.cmbApplyIndex.TabIndex = 40
+        '
+        'lblIndex
+        '
+        Me.lblIndex.AutoSize = True
+        Me.lblIndex.Location = New System.Drawing.Point(35, 75)
+        Me.lblIndex.Name = "lblIndex"
+        Me.lblIndex.Size = New System.Drawing.Size(36, 13)
+        Me.lblIndex.TabIndex = 39
+        Me.lblIndex.Text = "Index:"
+        '
+        'btnApply
+        '
+        Me.btnApply.Location = New System.Drawing.Point(525, 3)
+        Me.btnApply.Name = "btnApply"
+        Me.btnApply.Size = New System.Drawing.Size(127, 64)
+        Me.btnApply.TabIndex = 37
+        Me.btnApply.Text = "&Apply"
+        Me.btnApply.UseVisualStyleBackColor = True
+        '
+        'lblDest
+        '
+        Me.lblDest.AutoSize = True
+        Me.lblDest.Location = New System.Drawing.Point(8, 49)
+        Me.lblDest.Name = "lblDest"
+        Me.lblDest.Size = New System.Drawing.Size(63, 13)
+        Me.lblDest.TabIndex = 38
+        Me.lblDest.Text = "Destination:"
+        '
+        'lblSource
+        '
+        Me.lblSource.AutoSize = True
+        Me.lblSource.Location = New System.Drawing.Point(27, 17)
+        Me.lblSource.Name = "lblSource"
+        Me.lblSource.Size = New System.Drawing.Size(44, 13)
+        Me.lblSource.TabIndex = 35
+        Me.lblSource.Text = "Source:"
+        '
+        'btnBrowseDest
+        '
+        Me.btnBrowseDest.Location = New System.Drawing.Point(378, 43)
+        Me.btnBrowseDest.Name = "btnBrowseDest"
+        Me.btnBrowseDest.Size = New System.Drawing.Size(75, 23)
+        Me.btnBrowseDest.TabIndex = 36
+        Me.btnBrowseDest.Text = "Browse..."
+        Me.btnBrowseDest.UseVisualStyleBackColor = True
+        '
+        'txtApplyDest
+        '
+        Me.txtApplyDest.Location = New System.Drawing.Point(77, 46)
+        Me.txtApplyDest.Name = "txtApplyDest"
+        Me.txtApplyDest.Size = New System.Drawing.Size(295, 20)
+        Me.txtApplyDest.TabIndex = 34
+        '
+        'txtxApplySource
+        '
+        Me.txtxApplySource.Location = New System.Drawing.Point(77, 14)
+        Me.txtxApplySource.Name = "txtxApplySource"
+        Me.txtxApplySource.Size = New System.Drawing.Size(295, 20)
+        Me.txtxApplySource.TabIndex = 32
+        '
+        'btnBrowseSource
+        '
+        Me.btnBrowseSource.AutoSize = True
+        Me.btnBrowseSource.Location = New System.Drawing.Point(378, 14)
+        Me.btnBrowseSource.Name = "btnBrowseSource"
+        Me.btnBrowseSource.Size = New System.Drawing.Size(76, 23)
+        Me.btnBrowseSource.TabIndex = 33
+        Me.btnBrowseSource.Text = "Browse..."
+        Me.btnBrowseSource.UseVisualStyleBackColor = True
+        '
         'BackgroundWorkerDISMCommand
         '
+        '
+        'chkMountReadOnly
+        '
+        Me.chkMountReadOnly.AutoSize = True
+        Me.chkMountReadOnly.Location = New System.Drawing.Point(9, 137)
+        Me.chkMountReadOnly.Name = "chkMountReadOnly"
+        Me.chkMountReadOnly.Size = New System.Drawing.Size(76, 17)
+        Me.chkMountReadOnly.TabIndex = 19
+        Me.chkMountReadOnly.Text = "Read Only"
+        Me.chkMountReadOnly.UseVisualStyleBackColor = True
         '
         'frmMain
         '
@@ -1073,6 +1355,10 @@ Partial Class frmMain
         Me.TabPage6.PerformLayout()
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage7.PerformLayout()
+        Me.TabPage8.ResumeLayout(False)
+        Me.TabPage8.PerformLayout()
+        Me.TabPage9.ResumeLayout(False)
+        Me.TabPage9.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1177,5 +1463,31 @@ Partial Class frmMain
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents dlgOpenXML As System.Windows.Forms.OpenFileDialog
     Friend WithEvents dlgOpenMSP As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents TabPage8 As System.Windows.Forms.TabPage
+    Friend WithEvents btnAppend As System.Windows.Forms.Button
+    Friend WithEvents cmbCompression As System.Windows.Forms.ComboBox
+    Friend WithEvents lblCompression As System.Windows.Forms.Label
+    Friend WithEvents lblName As System.Windows.Forms.Label
+    Friend WithEvents txtName As System.Windows.Forms.TextBox
+    Friend WithEvents btnCreate As System.Windows.Forms.Button
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents btnCaptureDest As System.Windows.Forms.Button
+    Friend WithEvents txtCaptureDest As System.Windows.Forms.TextBox
+    Friend WithEvents txtCaptureSource As System.Windows.Forms.TextBox
+    Friend WithEvents btnCaptureSrc As System.Windows.Forms.Button
+    Friend WithEvents TabPage9 As System.Windows.Forms.TabPage
+    Friend WithEvents cmbApplyIndex As System.Windows.Forms.ComboBox
+    Friend WithEvents lblIndex As System.Windows.Forms.Label
+    Friend WithEvents btnApply As System.Windows.Forms.Button
+    Friend WithEvents lblDest As System.Windows.Forms.Label
+    Friend WithEvents lblSource As System.Windows.Forms.Label
+    Friend WithEvents btnBrowseDest As System.Windows.Forms.Button
+    Friend WithEvents txtApplyDest As System.Windows.Forms.TextBox
+    Friend WithEvents txtxApplySource As System.Windows.Forms.TextBox
+    Friend WithEvents btnBrowseSource As System.Windows.Forms.Button
+    Friend WithEvents chkApplyVerify As System.Windows.Forms.CheckBox
+    Friend WithEvents chkCaptureVerify As System.Windows.Forms.CheckBox
+    Friend WithEvents chkMountReadOnly As System.Windows.Forms.CheckBox
 
 End Class

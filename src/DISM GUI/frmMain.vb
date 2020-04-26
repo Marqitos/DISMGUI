@@ -26,6 +26,14 @@ Public Class frmMain
     Dim strProductCode As String
     Dim strPatchCode As String
     Dim strMSPFileName As String
+    Dim strSource As String
+    Dim strDest As String
+    Dim strName As String
+    Dim strCompression As String
+    Dim strAppendIndex As String
+
+
+
 
 
 
@@ -163,7 +171,12 @@ Public Class frmMain
         DISM.StartInfo.UseShellExecute = False
         DISM.StartInfo.CreateNoWindow = True
         DISM.StartInfo.FileName = "dism.exe"
-        DISM.StartInfo.Arguments = "/Mount-WIM /WimFile:""" & strWIM & """" & " /index:" & strIndex & " /MountDir:" & """" & strFolderName & """"
+        If chkMountReadOnly.Checked = True Then
+            DISM.StartInfo.Arguments = "/Mount-WIM /ReadOnly /WimFile:""" & strWIM & """" & " /index:" & strIndex & " /MountDir:" & """" & strFolderName & """"
+        Else
+            DISM.StartInfo.Arguments = "/Mount-WIM /WimFile:""" & strWIM & """" & " /index:" & strIndex & " /MountDir:" & """" & strFolderName & """"
+        End If
+
         strOutput = "Command line that ran is dism.exe " & DISM.StartInfo.Arguments
         DISM.Start()
         strOutput = strOutput & vbCr & vbCr & DISM.StandardOutput.ReadToEnd()
@@ -566,6 +579,8 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         cmbIndex.Text = "1"
+        cmbCompression.Text = "Fast"
+        cmbApplyIndex.Text = "1"
     End Sub
 
     Private Sub UseOnlineModeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles UseOnlineModeToolStripMenuItem.Click
@@ -839,5 +854,189 @@ Public Class frmMain
             Dim strMSPFileName As String = dlgOpenMSP.FileName
             txtPatchLocation.Text = strMSPFileName
         End If
+    End Sub
+
+    Private Sub btnCreate_Click(sender As System.Object, e As System.EventArgs) Handles btnCreate.Click
+        If txtCaptureSource.Text = "" Then
+            MessageBox.Show("You must select a source location.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtCaptureDest.Text = "" Then
+            MessageBox.Show("You must set a destination file.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtName.Text = "" Then
+            MessageBox.Show("You must enter a Name for the WIM.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        strSource = txtCaptureSource.Text
+        strDest = txtCaptureDest.Text
+        strName = txtName.Text
+        strCompression = cmbCompression.Text
+
+        If chkCaptureVerify.Checked = True Then
+            strDISMArguments = "/Capture-Image /ImageFile:" + strDest + " /CaptureDir:" + strSource + " /Name:" + Chr(34) + strName + Chr(34) + " /Compress:" + strCompression + " /verify"
+        Else
+            strDISMArguments = "/Capture-Image /ImageFile:" + strDest + " /CaptureDir:" + strSource + " /Name:" + Chr(34) + strName + Chr(34) + " /Compress:" + strCompression
+        End If
+
+
+        BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+        frmProgress.ShowDialog()
+        txtOutput.Text = strOutput
+    End Sub
+
+    Private Sub btnCaptureSrc_Click(sender As System.Object, e As System.EventArgs) Handles btnCaptureSrc.Click
+        dlgOpenFolder.ShowNewFolderButton = False
+        dlgOpenFolder.RootFolder = Environment.SpecialFolder.MyComputer
+        dlgOpenFolder.ShowDialog()
+        Dim strFolderName As String = dlgOpenFolder.SelectedPath
+        Dim dirs As String() = System.IO.Directory.GetDirectories(strFolderName)
+        Dim files As String() = System.IO.Directory.GetFiles(strFolderName)
+        If dirs.Length = 0 AndAlso files.Length = 0 Then
+            If MessageBox.Show("You must choose a non-empty folder.") = DialogResult.OK Then
+            Else
+                'Do Nothing
+            End If
+        Else
+            txtCaptureSource.Text = strFolderName
+        End If
+    End Sub
+
+    Private Sub btnCaptureDest_Click(sender As System.Object, e As System.EventArgs) Handles btnCaptureDest.Click
+        dlgOpenFile.InitialDirectory = "c:\"
+        dlgOpenFile.Title = "Choose WIM file to Open"
+        dlgOpenFile.Filter = ("WIM Files(*.wim)|*.wim|All Files (*.*)|*.*")
+        Dim DidWork As Integer = dlgOpenFile.ShowDialog
+
+        If DidWork = DialogResult.Cancel Then
+            'Do Nothing
+        Else
+            Dim strFileName As String = dlgOpenFile.FileName
+            txtCaptureDest.Text = strFileName
+        End If
+
+    End Sub
+
+    Private Sub btnAppend_Click(sender As System.Object, e As System.EventArgs) Handles btnAppend.Click
+        If txtCaptureSource.Text = "" Then
+            MessageBox.Show("You must select a source location.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtCaptureDest.Text = "" Then
+            MessageBox.Show("You must set a destination file.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtName.Text = "" Then
+            MessageBox.Show("You must enter a Name for the WIM.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        strSource = txtCaptureSource.Text
+        strDest = txtCaptureDest.Text
+        strName = txtName.Text
+        strCompression = cmbCompression.Text
+
+        strDISMArguments = "/Append-Image /ImageFile:" + strDest + " /CaptureDir:" + strSource + " /Name:" + Chr(34) + strName + Chr(34)
+        BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+        frmProgress.ShowDialog()
+        txtOutput.Text = strOutput
+
+
+    End Sub
+
+    Private Sub btnBrowseSource_Click(sender As System.Object, e As System.EventArgs) Handles btnBrowseSource.Click
+        dlgOpenFile.InitialDirectory = "c:\"
+        dlgOpenFile.Title = "Choose WIM file to Open"
+        dlgOpenFile.Filter = ("WIM Files(*.wim)|*.wim|All Files (*.*)|*.*")
+        Dim DidWork As Integer = dlgOpenFile.ShowDialog
+
+        If DidWork = DialogResult.Cancel Then
+            'Do Nothing
+        Else
+            Dim strFileName As String = dlgOpenFile.FileName
+            txtxApplySource.Text = strFileName
+        End If
+    End Sub
+
+    Private Sub btnBrowseDest_Click(sender As System.Object, e As System.EventArgs) Handles btnBrowseDest.Click
+        dlgOpenFolder.ShowNewFolderButton = False
+        dlgOpenFolder.RootFolder = Environment.SpecialFolder.MyComputer
+        dlgOpenFolder.ShowDialog()
+        Dim strFolderName As String = dlgOpenFolder.SelectedPath
+        Dim dirs As String() = System.IO.Directory.GetDirectories(strFolderName)
+        Dim files As String() = System.IO.Directory.GetFiles(strFolderName)
+        If dirs.Length = 0 AndAlso files.Length = 0 Then
+            txtApplyDest.Text = strFolderName
+        Else
+            If MessageBox.Show("You must choose an empty folder to mount the WIM") = DialogResult.OK Then
+            Else
+                'Do Nothing
+            End If
+        End If
+
+    End Sub
+
+    Private Sub btnApply_Click(sender As System.Object, e As System.EventArgs) Handles btnApply.Click
+        If txtxApplySource.Text = "" Then
+            MessageBox.Show("You must select a source WIM.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtApplyDest.Text = "" Then
+            MessageBox.Show("You must select a destination file.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If cmbApplyIndex.Text = "" Then
+            MessageBox.Show("You must select an index number.")
+            Exit Sub
+        Else
+
+        End If
+
+        strFolderName = txtApplyDest.Text
+        If strFolderName.EndsWith("\") Then
+            'Do Nothing
+        Else
+            strFolderName = strFolderName & "\"
+            txtApplyDest.Text = strFolderName
+        End If
+
+        strSource = txtxApplySource.Text
+        strDest = txtApplyDest.Text
+        strAppendIndex = cmbApplyIndex.Text
+
+
+        If chkApplyVerify.Checked = True Then
+            strDISMArguments = "/Apply-Image /ImageFile:" & strSource & " /index:" & strAppendIndex & " /ApplyDir:" & strDest & " /Verify"
+        Else
+            strDISMArguments = "/Apply-Image /ImageFile:" & strSource & " /index:" & strAppendIndex & " /ApplyDir:" & strDest & ""
+        End If
+        BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+        frmProgress.ShowDialog()
+        txtOutput.Text = strOutput
+
     End Sub
 End Class
