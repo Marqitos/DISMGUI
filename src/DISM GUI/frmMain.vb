@@ -20,6 +20,12 @@ Public Class frmMain
     Dim strPackagePath As String
     Dim strFeatureName As String
     Dim OnlineMode As Boolean = False
+    Dim strProductKey As String
+    Dim strEdition As String
+    Dim strXMLFileName As String
+    Dim strProductCode As String
+    Dim strPatchCode As String
+    Dim strMSPFileName As String
 
 
 
@@ -382,6 +388,7 @@ Public Class frmMain
             MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
         Else
             If txtDelDriverLocation.Text = "" Then
+                'Or Microsoft.VisualBasic.Left(txtDelDriverLocation.Text, 3) <> "inf"
                 MessageBox.Show("You must enter in a driver name before continuing.  The Driver name must end with inf")
             Else
                 strDelDriverLocation = txtDelDriverLocation.Text
@@ -561,4 +568,276 @@ Public Class frmMain
         cmbIndex.Text = "1"
     End Sub
 
+    Private Sub UseOnlineModeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles UseOnlineModeToolStripMenuItem.Click
+        If UseOnlineModeToolStripMenuItem.CheckState = CheckState.Checked Then
+            OnlineMode = True
+            btnMount.Enabled = False
+            btnOpenFolder.Enabled = False
+        Else
+            OnlineMode = False
+            btnMount.Enabled = True
+            btnOpenFolder.Enabled = True
+        End If
+    End Sub
+
+    Private Sub btGetCurrentEdition_Click(sender As System.Object, e As System.EventArgs) Handles btGetCurrentEdition.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+        Else
+            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-CurrentEdition"
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+        End If
+    End Sub
+
+    Private Sub btnGetTargetEditions_Click(sender As System.Object, e As System.EventArgs) Handles btnGetTargetEditions.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+        Else
+            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-TargetEditions"
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+        End If
+    End Sub
+
+    Private Sub btnSetProdKey_Click(sender As System.Object, e As System.EventArgs) Handles btnSetProdKey.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtProdKey.Text = "" Then
+            MessageBox.Show("Product Key is required to continue.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        strProductKey = txtProdKey.Text
+        strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Set-ProductKey:" & strProductKey
+
+        BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+        frmProgress.ShowDialog()
+
+
+        txtOutput.Text = strOutput
+    End Sub
+
+    Private Sub btnSetEdition_Click(sender As System.Object, e As System.EventArgs) Handles btnSetEdition.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+            Exit Sub
+        Else
+            
+        End If
+
+        If txtEdition.Text = "" Then
+            MessageBox.Show("Edition is required to continue.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        strEdition = txtEdition.Text
+        strProductKey = txtProdKey.Text
+        strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Set-Edition:" & strEdition
+
+        BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+        frmProgress.ShowDialog()
+        txtOutput.Text = strOutput
+
+    End Sub
+
+    Private Sub btnChooseUnAttend_Click(sender As System.Object, e As System.EventArgs) Handles btnChooseUnAttend.Click
+        dlgOpenXML.InitialDirectory = "c:\"
+        dlgOpenXML.Title = "Choose Unattend XML file to Open"
+        dlgOpenXML.Filter = ("XML Files(*.xml)|*.xml|All Files (*.*)|*.*")
+        Dim DidWork As Integer = dlgOpenXML.ShowDialog
+
+        If DidWork = DialogResult.Cancel Then
+            'Do Nothing
+        Else
+            Dim strXMLFileName As String = dlgOpenXML.FileName
+            txtUnattend.Text = strXMLFileName
+        End If
+    End Sub
+
+    Private Sub btnApplyUnattend_Click(sender As System.Object, e As System.EventArgs) Handles btnApplyUnattend.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+        Else
+            'Do Nothing
+        End If
+
+        If txtUnattend.Text = "" Then
+            MessageBox.Show("You must enter an XML file.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+        strXMLFileName = txtPatchLocation.Text
+        strDISMArguments = "/image:" & strMountedImageLocation & " /Apply-Unattend:" & strXMLFileName
+        BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+        frmProgress.ShowDialog()
+        txtOutput.Text = strOutput
+    End Sub
+
+    Private Sub btnGetApps_Click(sender As System.Object, e As System.EventArgs) Handles btnGetApps.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+        Else
+            strDISMArguments = "/image:" & strMountedImageLocation & " /Get-Apps"
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+        End If
+    End Sub
+
+    Private Sub btnGetAppInfo_Click(sender As System.Object, e As System.EventArgs) Handles btnGetAppInfo.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtProductCode.Text = "{        -    -    -    -            }" Then
+            strProductCode = txtProductCode.Text
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-AppInfo"
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+        Else
+            strProductCode = txtProductCode.Text
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-AppInfo /ProductCode:" & strProductCode
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+        End If
+
+
+        txtOutput.Text = strOutput
+    End Sub
+
+    Private Sub btnGetAppPatches_Click(sender As System.Object, e As System.EventArgs) Handles btnGetAppPatches.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtProductCode.Text = "{        -    -    -    -            }" Then
+            strProductCode = txtProductCode.Text
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-AppPatches"
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+        Else
+            strProductCode = txtProductCode.Text
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-AppPatches  /ProductCode:" & strProductCode
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+        End If
+
+       
+    End Sub
+
+    Private Sub btnGetAppPatchInfo_Click(sender As System.Object, e As System.EventArgs) Handles btnGetAppPatchInfo.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtPatchCode.Text = "{        -    -    -    -            }" And txtProductCode.Text = "{        -    -    -    -            }" Then
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-AppPatchInfo"
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtPatchCode.Text <> "{        -    -    -    -            }" And txtProductCode.Text = "{        -    -    -    -            }" Then
+            strPatchCode = txtPatchCode.Text
+            strProductCode = txtProductCode.Text
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-AppPatchInfo /PatchCode:" & strPatchCode
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtPatchCode.Text = "{        -    -    -    -            }" And txtProductCode.Text <> "{        -    -    -    -            }" Then
+            strPatchCode = txtPatchCode.Text
+            strProductCode = txtProductCode.Text
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-AppPatchInfo /ProductCode:" & strProductCode
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        If txtPatchCode.Text <> "{        -    -    -    -            }" And txtProductCode.Text <> "{        -    -    -    -            }" Then
+            strPatchCode = txtPatchCode.Text
+            strProductCode = txtProductCode.Text
+            strDISMArguments = "/image:""" & strMountedImageLocation & """" & " /Get-AppPatchInfo /PatchCode:" & strPatchCode & " /ProductCode:" & strProductCode
+            BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+            frmProgress.ShowDialog()
+            txtOutput.Text = strOutput
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+    End Sub
+
+    Private Sub btnCheckAppPatch_Click(sender As System.Object, e As System.EventArgs) Handles btnCheckAppPatch.Click
+        If WIMMounted = False Then
+            MessageBox.Show("No WIM is mounted.  You must mount a WIM before running this command.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+
+        
+
+        If txtPatchLocation.Text = "" Then
+            MessageBox.Show("You must enter an MSP file.")
+            Exit Sub
+        Else
+            'Do Nothing
+        End If
+        strMSPFileName = txtPatchLocation.Text
+        strDISMArguments = "/image:" & strMountedImageLocation & " /Check-AppPatch /PatchLocation:" & strMSPFileName
+        BackgroundWorkerDISMCommand.RunWorkerAsync(strDISMArguments)
+        frmProgress.ShowDialog()
+        txtOutput.Text = strOutput
+
+
+    End Sub
+
+    Private Sub btnChooseMSP_Click(sender As System.Object, e As System.EventArgs) Handles btnChooseMSP.Click
+        dlgOpenMSP.InitialDirectory = "c:\"
+        dlgOpenMSP.Title = "Choose Unattend XML file to Open"
+        dlgOpenMSP.Filter = ("MSP Files(*.msp)|*.msp|All Files (*.*)|*.*")
+        Dim DidWork As Integer = dlgOpenMSP.ShowDialog
+
+        If DidWork = DialogResult.Cancel Then
+            'Do Nothing
+        Else
+            Dim strMSPFileName As String = dlgOpenMSP.FileName
+            txtPatchLocation.Text = strMSPFileName
+        End If
+    End Sub
 End Class

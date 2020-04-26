@@ -36,6 +36,7 @@ Partial Class frmMain
         Me.GetWIMInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CleanupWIMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CleanupImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UseOnlineModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnMount = New System.Windows.Forms.Button()
         Me.cmbIndex = New System.Windows.Forms.ComboBox()
@@ -91,7 +92,36 @@ Partial Class frmMain
         Me.txtFeatPackageName = New System.Windows.Forms.TextBox()
         Me.txtFeatureName = New System.Windows.Forms.TextBox()
         Me.btnGetFeatures = New System.Windows.Forms.Button()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.btnSetEdition = New System.Windows.Forms.Button()
+        Me.txtEdition = New System.Windows.Forms.TextBox()
+        Me.txtProdKey = New System.Windows.Forms.MaskedTextBox()
+        Me.btnSetProdKey = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.btnGetTargetEditions = New System.Windows.Forms.Button()
+        Me.btGetCurrentEdition = New System.Windows.Forms.Button()
+        Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.btnChooseUnAttend = New System.Windows.Forms.Button()
+        Me.txtUnattend = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.btnApplyUnattend = New System.Windows.Forms.Button()
+        Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.btnChooseMSP = New System.Windows.Forms.Button()
+        Me.txtPatchLocation = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.txtPatchCode = New System.Windows.Forms.MaskedTextBox()
+        Me.txtProductCode = New System.Windows.Forms.MaskedTextBox()
+        Me.btnCheckAppPatch = New System.Windows.Forms.Button()
+        Me.btnGetAppPatchInfo = New System.Windows.Forms.Button()
+        Me.btnGetAppPatches = New System.Windows.Forms.Button()
+        Me.btnGetAppInfo = New System.Windows.Forms.Button()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.btnGetApps = New System.Windows.Forms.Button()
         Me.BackgroundWorkerDISMCommand = New System.ComponentModel.BackgroundWorker()
+        Me.dlgOpenXML = New System.Windows.Forms.OpenFileDialog()
+        Me.dlgOpenMSP = New System.Windows.Forms.OpenFileDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -102,6 +132,9 @@ Partial Class frmMain
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.TabPage4.SuspendLayout()
+        Me.TabPage5.SuspendLayout()
+        Me.TabPage6.SuspendLayout()
+        Me.TabPage7.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtWIM
@@ -169,7 +202,7 @@ Partial Class frmMain
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenDISMLogToolStripMenuItem, Me.GetWIMInfoToolStripMenuItem, Me.CleanupWIMToolStripMenuItem, Me.CleanupImageToolStripMenuItem, Me.AboutToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenDISMLogToolStripMenuItem, Me.GetWIMInfoToolStripMenuItem, Me.CleanupWIMToolStripMenuItem, Me.CleanupImageToolStripMenuItem, Me.UseOnlineModeToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
         Me.ToolsToolStripMenuItem.Text = "Tools"
@@ -197,6 +230,14 @@ Partial Class frmMain
         Me.CleanupImageToolStripMenuItem.Name = "CleanupImageToolStripMenuItem"
         Me.CleanupImageToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
         Me.CleanupImageToolStripMenuItem.Text = "Cleanup Image"
+        '
+        'UseOnlineModeToolStripMenuItem
+        '
+        Me.UseOnlineModeToolStripMenuItem.CheckOnClick = True
+        Me.UseOnlineModeToolStripMenuItem.Name = "UseOnlineModeToolStripMenuItem"
+        Me.UseOnlineModeToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.UseOnlineModeToolStripMenuItem.Text = "Use Online Mode"
+        Me.UseOnlineModeToolStripMenuItem.Visible = False
         '
         'AboutToolStripMenuItem
         '
@@ -294,6 +335,9 @@ Partial Class frmMain
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
+        Me.TabControl1.Controls.Add(Me.TabPage5)
+        Me.TabControl1.Controls.Add(Me.TabPage6)
+        Me.TabControl1.Controls.Add(Me.TabPage7)
         Me.TabControl1.Location = New System.Drawing.Point(11, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -731,6 +775,264 @@ Partial Class frmMain
         Me.btnGetFeatures.Text = "Get Features from WIM"
         Me.btnGetFeatures.UseVisualStyleBackColor = True
         '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.Label15)
+        Me.TabPage5.Controls.Add(Me.btnSetEdition)
+        Me.TabPage5.Controls.Add(Me.txtEdition)
+        Me.TabPage5.Controls.Add(Me.txtProdKey)
+        Me.TabPage5.Controls.Add(Me.btnSetProdKey)
+        Me.TabPage5.Controls.Add(Me.Label13)
+        Me.TabPage5.Controls.Add(Me.btnGetTargetEditions)
+        Me.TabPage5.Controls.Add(Me.btGetCurrentEdition)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Size = New System.Drawing.Size(655, 364)
+        Me.TabPage5.TabIndex = 4
+        Me.TabPage5.Text = "Edition Servicing"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(26, 80)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(39, 13)
+        Me.Label15.TabIndex = 28
+        Me.Label15.Text = "Edition"
+        '
+        'btnSetEdition
+        '
+        Me.btnSetEdition.Location = New System.Drawing.Point(16, 122)
+        Me.btnSetEdition.Name = "btnSetEdition"
+        Me.btnSetEdition.Size = New System.Drawing.Size(129, 23)
+        Me.btnSetEdition.TabIndex = 27
+        Me.btnSetEdition.Text = "Set Edition"
+        Me.btnSetEdition.UseVisualStyleBackColor = True
+        '
+        'txtEdition
+        '
+        Me.txtEdition.Location = New System.Drawing.Point(16, 96)
+        Me.txtEdition.Name = "txtEdition"
+        Me.txtEdition.Size = New System.Drawing.Size(303, 20)
+        Me.txtEdition.TabIndex = 26
+        '
+        'txtProdKey
+        '
+        Me.txtProdKey.Location = New System.Drawing.Point(16, 19)
+        Me.txtProdKey.Mask = "&&&&&-&&&&&-&&&&&-&&&&&-&&&&&"
+        Me.txtProdKey.Name = "txtProdKey"
+        Me.txtProdKey.Size = New System.Drawing.Size(303, 20)
+        Me.txtProdKey.TabIndex = 25
+        '
+        'btnSetProdKey
+        '
+        Me.btnSetProdKey.Location = New System.Drawing.Point(16, 45)
+        Me.btnSetProdKey.Name = "btnSetProdKey"
+        Me.btnSetProdKey.Size = New System.Drawing.Size(129, 23)
+        Me.btnSetProdKey.TabIndex = 24
+        Me.btnSetProdKey.Text = "Set Product Key"
+        Me.btnSetProdKey.UseVisualStyleBackColor = True
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(26, 3)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(65, 13)
+        Me.Label13.TabIndex = 22
+        Me.Label13.Text = "Product Key"
+        '
+        'btnGetTargetEditions
+        '
+        Me.btnGetTargetEditions.Location = New System.Drawing.Point(525, 73)
+        Me.btnGetTargetEditions.Name = "btnGetTargetEditions"
+        Me.btnGetTargetEditions.Size = New System.Drawing.Size(127, 64)
+        Me.btnGetTargetEditions.TabIndex = 12
+        Me.btnGetTargetEditions.Text = "Get Target Editions"
+        Me.btnGetTargetEditions.UseVisualStyleBackColor = True
+        '
+        'btGetCurrentEdition
+        '
+        Me.btGetCurrentEdition.Location = New System.Drawing.Point(525, 3)
+        Me.btGetCurrentEdition.Name = "btGetCurrentEdition"
+        Me.btGetCurrentEdition.Size = New System.Drawing.Size(127, 64)
+        Me.btGetCurrentEdition.TabIndex = 11
+        Me.btGetCurrentEdition.Text = "Get Current Edition"
+        Me.btGetCurrentEdition.UseVisualStyleBackColor = True
+        '
+        'TabPage6
+        '
+        Me.TabPage6.Controls.Add(Me.btnChooseUnAttend)
+        Me.TabPage6.Controls.Add(Me.txtUnattend)
+        Me.TabPage6.Controls.Add(Me.Label14)
+        Me.TabPage6.Controls.Add(Me.btnApplyUnattend)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Size = New System.Drawing.Size(655, 364)
+        Me.TabPage6.TabIndex = 5
+        Me.TabPage6.Text = "Unattended Servicing"
+        Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'btnChooseUnAttend
+        '
+        Me.btnChooseUnAttend.Location = New System.Drawing.Point(358, 21)
+        Me.btnChooseUnAttend.Name = "btnChooseUnAttend"
+        Me.btnChooseUnAttend.Size = New System.Drawing.Size(106, 23)
+        Me.btnChooseUnAttend.TabIndex = 23
+        Me.btnChooseUnAttend.Text = "Choose XML"
+        Me.btnChooseUnAttend.UseVisualStyleBackColor = True
+        '
+        'txtUnattend
+        '
+        Me.txtUnattend.Location = New System.Drawing.Point(2, 25)
+        Me.txtUnattend.Name = "txtUnattend"
+        Me.txtUnattend.Size = New System.Drawing.Size(339, 20)
+        Me.txtUnattend.TabIndex = 21
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(3, 3)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(95, 13)
+        Me.Label14.TabIndex = 22
+        Me.Label14.Text = "Unattend XML File"
+        '
+        'btnApplyUnattend
+        '
+        Me.btnApplyUnattend.Location = New System.Drawing.Point(525, 3)
+        Me.btnApplyUnattend.Name = "btnApplyUnattend"
+        Me.btnApplyUnattend.Size = New System.Drawing.Size(127, 64)
+        Me.btnApplyUnattend.TabIndex = 20
+        Me.btnApplyUnattend.Text = "Apply Unattend.xml"
+        Me.btnApplyUnattend.UseVisualStyleBackColor = True
+        '
+        'TabPage7
+        '
+        Me.TabPage7.Controls.Add(Me.btnChooseMSP)
+        Me.TabPage7.Controls.Add(Me.txtPatchLocation)
+        Me.TabPage7.Controls.Add(Me.Label18)
+        Me.TabPage7.Controls.Add(Me.txtPatchCode)
+        Me.TabPage7.Controls.Add(Me.txtProductCode)
+        Me.TabPage7.Controls.Add(Me.btnCheckAppPatch)
+        Me.TabPage7.Controls.Add(Me.btnGetAppPatchInfo)
+        Me.TabPage7.Controls.Add(Me.btnGetAppPatches)
+        Me.TabPage7.Controls.Add(Me.btnGetAppInfo)
+        Me.TabPage7.Controls.Add(Me.Label17)
+        Me.TabPage7.Controls.Add(Me.Label16)
+        Me.TabPage7.Controls.Add(Me.btnGetApps)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Size = New System.Drawing.Size(655, 364)
+        Me.TabPage7.TabIndex = 6
+        Me.TabPage7.Text = "Appiclation Servicing"
+        Me.TabPage7.UseVisualStyleBackColor = True
+        '
+        'btnChooseMSP
+        '
+        Me.btnChooseMSP.Location = New System.Drawing.Point(358, 99)
+        Me.btnChooseMSP.Name = "btnChooseMSP"
+        Me.btnChooseMSP.Size = New System.Drawing.Size(106, 23)
+        Me.btnChooseMSP.TabIndex = 41
+        Me.btnChooseMSP.Text = "Choose MSP"
+        Me.btnChooseMSP.UseVisualStyleBackColor = True
+        '
+        'txtPatchLocation
+        '
+        Me.txtPatchLocation.Location = New System.Drawing.Point(6, 101)
+        Me.txtPatchLocation.Name = "txtPatchLocation"
+        Me.txtPatchLocation.Size = New System.Drawing.Size(303, 20)
+        Me.txtPatchLocation.TabIndex = 39
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(3, 81)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(49, 13)
+        Me.Label18.TabIndex = 40
+        Me.Label18.Text = "MSP File"
+        '
+        'txtPatchCode
+        '
+        Me.txtPatchCode.Location = New System.Drawing.Point(6, 58)
+        Me.txtPatchCode.Mask = "{&&&&&&&&-&&&&-&&&&-&&&&-&&&&&&&&&&&&}"
+        Me.txtPatchCode.Name = "txtPatchCode"
+        Me.txtPatchCode.Size = New System.Drawing.Size(303, 20)
+        Me.txtPatchCode.TabIndex = 38
+        '
+        'txtProductCode
+        '
+        Me.txtProductCode.Location = New System.Drawing.Point(6, 19)
+        Me.txtProductCode.Mask = "{&&&&&&&&-&&&&-&&&&-&&&&-&&&&&&&&&&&&}"
+        Me.txtProductCode.Name = "txtProductCode"
+        Me.txtProductCode.Size = New System.Drawing.Size(303, 20)
+        Me.txtProductCode.TabIndex = 37
+        '
+        'btnCheckAppPatch
+        '
+        Me.btnCheckAppPatch.Location = New System.Drawing.Point(525, 283)
+        Me.btnCheckAppPatch.Name = "btnCheckAppPatch"
+        Me.btnCheckAppPatch.Size = New System.Drawing.Size(127, 64)
+        Me.btnCheckAppPatch.TabIndex = 36
+        Me.btnCheckAppPatch.Text = "Check App Patch"
+        Me.btnCheckAppPatch.UseVisualStyleBackColor = True
+        '
+        'btnGetAppPatchInfo
+        '
+        Me.btnGetAppPatchInfo.Location = New System.Drawing.Point(525, 213)
+        Me.btnGetAppPatchInfo.Name = "btnGetAppPatchInfo"
+        Me.btnGetAppPatchInfo.Size = New System.Drawing.Size(127, 64)
+        Me.btnGetAppPatchInfo.TabIndex = 35
+        Me.btnGetAppPatchInfo.Text = "Get Application Patch Info"
+        Me.btnGetAppPatchInfo.UseVisualStyleBackColor = True
+        '
+        'btnGetAppPatches
+        '
+        Me.btnGetAppPatches.Location = New System.Drawing.Point(525, 143)
+        Me.btnGetAppPatches.Name = "btnGetAppPatches"
+        Me.btnGetAppPatches.Size = New System.Drawing.Size(127, 64)
+        Me.btnGetAppPatches.TabIndex = 34
+        Me.btnGetAppPatches.Text = "Get Application Patches"
+        Me.btnGetAppPatches.UseVisualStyleBackColor = True
+        '
+        'btnGetAppInfo
+        '
+        Me.btnGetAppInfo.Location = New System.Drawing.Point(525, 73)
+        Me.btnGetAppInfo.Name = "btnGetAppInfo"
+        Me.btnGetAppInfo.Size = New System.Drawing.Size(127, 64)
+        Me.btnGetAppInfo.TabIndex = 33
+        Me.btnGetAppInfo.Text = "Get Application Info"
+        Me.btnGetAppInfo.UseVisualStyleBackColor = True
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(3, 42)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(60, 13)
+        Me.Label17.TabIndex = 32
+        Me.Label17.Text = "PatchCode"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(0, 3)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(69, 13)
+        Me.Label16.TabIndex = 30
+        Me.Label16.Text = "ProductCode"
+        '
+        'btnGetApps
+        '
+        Me.btnGetApps.Location = New System.Drawing.Point(525, 3)
+        Me.btnGetApps.Name = "btnGetApps"
+        Me.btnGetApps.Size = New System.Drawing.Size(127, 64)
+        Me.btnGetApps.TabIndex = 12
+        Me.btnGetApps.Text = "Get Applications"
+        Me.btnGetApps.UseVisualStyleBackColor = True
+        '
         'BackgroundWorkerDISMCommand
         '
         '
@@ -765,6 +1067,12 @@ Partial Class frmMain
         Me.GroupBox3.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        Me.TabPage5.ResumeLayout(False)
+        Me.TabPage5.PerformLayout()
+        Me.TabPage6.ResumeLayout(False)
+        Me.TabPage6.PerformLayout()
+        Me.TabPage7.ResumeLayout(False)
+        Me.TabPage7.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -839,5 +1147,35 @@ Partial Class frmMain
     Friend WithEvents chkEnablePkgName As System.Windows.Forms.CheckBox
     Friend WithEvents btnDisableFeature As System.Windows.Forms.Button
     Friend WithEvents CleanupImageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents UseOnlineModeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
+    Friend WithEvents btnGetTargetEditions As System.Windows.Forms.Button
+    Friend WithEvents btGetCurrentEdition As System.Windows.Forms.Button
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents btnSetProdKey As System.Windows.Forms.Button
+    Friend WithEvents txtProdKey As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents btnSetEdition As System.Windows.Forms.Button
+    Friend WithEvents txtEdition As System.Windows.Forms.TextBox
+    Friend WithEvents TabPage6 As System.Windows.Forms.TabPage
+    Friend WithEvents btnChooseUnAttend As System.Windows.Forms.Button
+    Friend WithEvents txtUnattend As System.Windows.Forms.TextBox
+    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents btnApplyUnattend As System.Windows.Forms.Button
+    Friend WithEvents TabPage7 As System.Windows.Forms.TabPage
+    Friend WithEvents btnGetApps As System.Windows.Forms.Button
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents btnGetAppInfo As System.Windows.Forms.Button
+    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents btnCheckAppPatch As System.Windows.Forms.Button
+    Friend WithEvents btnGetAppPatchInfo As System.Windows.Forms.Button
+    Friend WithEvents btnGetAppPatches As System.Windows.Forms.Button
+    Friend WithEvents txtPatchCode As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents txtProductCode As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents btnChooseMSP As System.Windows.Forms.Button
+    Friend WithEvents txtPatchLocation As System.Windows.Forms.TextBox
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents dlgOpenXML As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents dlgOpenMSP As System.Windows.Forms.OpenFileDialog
 
 End Class
