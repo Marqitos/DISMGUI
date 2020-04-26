@@ -1,0 +1,3 @@
+[submodule "deps/tokio"]
+	path = deps/tokio
+	url = git@github.com:Marqitos/net-Tokio.git
