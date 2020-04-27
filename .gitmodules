@@ -3,4 +3,4 @@
 	url = git@github.com:Marqitos/net-Tokio.git
 [submodule "deps/WindowsAPICodePack"]
 	path = deps/WindowsAPICodePack
-	url = git@github.com:aybe/Windows-API-Code-Pack-1.1.git
+url=git@github.com:contre/Windows-API-Code-Pack-1.1.git
