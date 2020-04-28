@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3AC29432-82CE-4573-AD20-7D75DDF75306}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>App</RootNamespace>
+    <AssemblyName>App</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="..\deps\tokio\src\Core\ObservableObject.cs">
+      <Link>Tokio\ObservableObject.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\tokio\src\WPF\Resources\Tokio-WPF.Designer.cs">
+      <Link>Resources\Tokio-WPF.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\tokio\src\WPF\ViewModels\IViewModel.cs">
+      <Link>Tokio\ViewModels\IViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\tokio\src\WPF\ViewModels\ViewModelBase.cs">
+      <Link>Tokio\ViewModels\ViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\tokio\src\WPF\ViewModels\WorkspaceViewModel.cs">
+      <Link>Tokio\ViewModels\WorkspaceViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Dialogs\Common\DialogControl.cs">
+      <Link>WindowsAPICodePack\Dialogs\DialogControl.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Dialogs\Common\DialogsDefaults.cs">
+      <Link>WindowsAPICodePack\Dialogs\DialogsDefaults.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Dialogs\Common\IDialogControlHost.cs">
+      <Link>WindowsAPICodePack\Dialogs\IDialogControlHost.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Interop\CoreErrorHelper.cs">
+      <Link>WindowsAPICodePack\Internal\CoreErrorHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Interop\CoreHelpers.cs">
+      <Link>WindowsAPICodePack\Internal\CoreHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Interop\CoreNativeMethods.cs">
+      <Link>WindowsAPICodePack\Internal\CoreNativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Interop\Dialogs\DialogShowState.cs">
+      <Link>WindowsAPICodePack\Dialogs\DialogShowState.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Interop\TaskDialogs\TaskDialogNativeMethods.cs">
+      <Link>WindowsAPICodePack\Dialogs\TaskDialogNativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Interop\WindowMessage.cs">
+      <Link>WindowsAPICodePack\Internal\WindowMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\PropertySystem\PropertyKey.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\PropertyKey.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\PropertySystem\PropVariant.cs">
+      <Link>WindowsAPICodePack\Internal\PropVariant.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\PropertySystem\PropVariantNativeMethods.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\PropVariantNativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Resources\WinApi-Core.Designer.cs">
+      <Link>Resources\WinApi-Core.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialog.cs">
+      <Link>WindowsAPICodePack\Dialogs\CommonFileDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogButton.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogButton.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogCheckBox.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogCheckBox.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogComboBox.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogComboBox.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogControl.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogControl.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogControlCollection.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogControlCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogFilter.cs">
+      <Link>WindowsAPICodePack\Dialogs\CommonFileDialogFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogFilterCollection.cs">
+      <Link>WindowsAPICodePack\Dialogs\CommonFileDialogFilterCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogFolderChangeEventArgs.cs">
+      <Link>WindowsAPICodePack\Dialogs\CommonFileDialogFolderChangeEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogGroupBox.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogGroupBox.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogLabel.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogLabel.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogMenu.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogMenu.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogProminentControl.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogProminentControl.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogRadioButtonList.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogRadioButtonList.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogResult.cs">
+      <Link>WindowsAPICodePack\Dialogs\CommonFileDialogResult.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonFileDialogTextBox.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\CommonFileDialogTextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonOpenFileDialog.cs">
+      <Link>WindowsAPICodePack\Dialogs\CommonOpenFileDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\CommonSaveFileDialog.cs">
+      <Link>WindowsAPICodePack\Dialogs\CommonSaveFileDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\CommonFileDialogs\ICommonFileDialogIndexedControls.cs">
+      <Link>WindowsAPICodePack\Dialogs\Controls\ICommonFileDialogIndexedControls.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\DefaultShellImageSizes.cs">
+      <Link>WindowsAPICodePack\Shell\DefaultShellImageSizes.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\IconReference.cs">
+      <Link>WindowsAPICodePack\Shell\IconReference.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellEnums.cs">
+      <Link>WindowsAPICodePack\Shell\ShellEnums.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellException.cs">
+      <Link>WindowsAPICodePack\Shell\ShellException.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellFile.cs">
+      <Link>WindowsAPICodePack\Shell\ShellFile.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellFileSystemFolder.cs">
+      <Link>WindowsAPICodePack\Shell\ShellFileSystemFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellFolder.cs">
+      <Link>WindowsAPICodePack\Shell\ShellFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellFolderItems.cs">
+      <Link>WindowsAPICodePack\Shell\ShellFolderItems.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellHelper.cs">
+      <Link>WindowsAPICodePack\Shell\ShellHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellLibrary.cs">
+      <Link>WindowsAPICodePack\Shell\ShellLibrary.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellLink.cs">
+      <Link>WindowsAPICodePack\Shell\ShellLink.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellNonFileSystemFolder.cs">
+      <Link>WindowsAPICodePack\Shell\ShellNonFileSystemFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellNonFileSystemItem.cs">
+      <Link>WindowsAPICodePack\Shell\ShellNonFileSystemItem.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellObject.cs">
+      <Link>WindowsAPICodePack\Shell\ShellObject.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellObjectContainer.cs">
+      <Link>WindowsAPICodePack\Shell\ShellObjectContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellObjectFactory.cs">
+      <Link>WindowsAPICodePack\Shell\ShellObjectFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellSavedSearchCollection.cs">
+      <Link>WindowsAPICodePack\Shell\ShellSavedSearchCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellSearchCollection.cs">
+      <Link>WindowsAPICodePack\Shell\ShellSearchCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellSearchConnector.cs">
+      <Link>WindowsAPICodePack\Shell\ShellSearchConnector.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellThumbnail.cs">
+      <Link>WindowsAPICodePack\Shell\ShellThumbnail.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\ShellThumbnailEnums.cs">
+      <Link>WindowsAPICodePack\Shell\ShellThumbnailEnums.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Common\SortColumn.cs">
+      <Link>WindowsAPICodePack\Shell\SortColumn.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\ExplorerBrowser\CommonControlException.cs">
+      <Link>WindowsAPICodePack\Controls\CommonControlException.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\Common\ShellCOMClasses.cs">
+      <Link>WindowsAPICodePack\Shell\ShellCOMClasses.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\Common\ShellCOMGuids.cs">
+      <Link>WindowsAPICodePack\Shell\ShellCOMGuids.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\Common\ShellCOMInterfaces.cs">
+      <Link>WindowsAPICodePack\Shell\ShellCOMInterfaces.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\Common\ShellNativeMethods.cs">
+      <Link>WindowsAPICodePack\Shell\ShellNativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\Common\ShellNativeStructs.cs">
+      <Link>WindowsAPICodePack\Shell\ShellNativeStructs.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\Dialogs\DialogsCOMClasses.cs">
+      <Link>WindowsAPICodePack\Dialogs\DialogsCOMClasses.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\Dialogs\DialogsCOMInterfaces.cs">
+      <Link>WindowsAPICodePack\Dialogs\DialogsCOMInterfaces.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\KnownFolders\KnownFoldersCOMGuids.cs">
+      <Link>WindowsAPICodePack\Shell\KnownFoldersCOMGuids.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\KnownFolders\KnownFoldersCOMInterfaces.cs">
+      <Link>WindowsAPICodePack\Shell\KnownFoldersCOMInterfaces.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\KnownFolders\KnownFoldersNativeMethods.cs">
+      <Link>WindowsAPICodePack\Shell\KnownFoldersNativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\PropertySystem\PropertySystemCOMInterfaces.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\PropertySystemCOMInterfaces.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\PropertySystem\PropertySystemNativeMethods.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\PropertySystemNativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Interop\Taskbar\TaskbarNativeMethods.cs">
+      <Link>WindowsAPICodePack\Taskbar\TaskbarNativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\DefinitionOptions.cs">
+      <Link>WindowsAPICodePack\Shell\DefinitionOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\FileSystemKnownFolder.cs">
+      <Link>WindowsAPICodePack\Shell\FileSystemKnownFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\FolderCategory.cs">
+      <Link>WindowsAPICodePack\Shell\FolderCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\FolderProperties.cs">
+      <Link>WindowsAPICodePack\Shell\FolderProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\FoldersIdentifiers.cs">
+      <Link>WindowsAPICodePack\Shell\FoldersIdentifiers.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\FolderTypes.cs">
+      <Link>WindowsAPICodePack\Shell\FolderTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\IKnownFolder.cs">
+      <Link>WindowsAPICodePack\Shell\IKnownFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\KnownFolderHelper.cs">
+      <Link>WindowsAPICodePack\Shell\KnownFolderHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\KnownFolders.cs">
+      <Link>WindowsAPICodePack\Shell\KnownFolders.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\KnownFolderSettings.cs">
+      <Link>WindowsAPICodePack\Shell\KnownFolderSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\NonFileSystemKnownFolder.cs">
+      <Link>WindowsAPICodePack\Shell\NonFileSystemKnownFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\KnownFolders\RedirectionCapabilities.cs">
+      <Link>WindowsAPICodePack\Shell\RedirectionCapabilities.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\IShellProperty.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\IShellProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\PropertySystemException.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\PropertySystemException.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellProperties.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellProperty.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellPropertyCollection.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellPropertyCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellPropertyDescription.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellPropertyDescription.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellPropertyDescriptionsCache.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellPropertyDescriptionsCache.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellPropertyEnums.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellPropertyEnums.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellPropertyEnumType.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellPropertyEnumType.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellPropertyFactory.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellPropertyFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\ShellPropertyWriter.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\ShellPropertyWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\StronglyTypedProperties.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\StronglyTypedProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\PropertySystem\SystemProperties.cs">
+      <Link>WindowsAPICodePack\Shell\PropertySystem\SystemProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Resources\WinApi-Shell.Designer.cs">
+      <Link>Resources\WinApi-Shell.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\ShellObjectWatcher\ShellObjectWatcherEnums.cs">
+      <Link>WindowsAPICodePack\Shell\ShellObjectWatcherEnums.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\AboutVM.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\WIMOptVM.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\AboutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="..\deps\tokio\src\WPF\Resources\Tokio-WPF.resx">
+      <Link>Tokio\Resources\Tokio-WPF.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Core\Resources\WinApi-Core.resx">
+      <Link>WindowsAPICodePack\Resources\WinApi-Core.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\deps\WindowsAPICodePack\source\WindowsAPICodePack\Shell\Resources\WinApi-Shell.resx">
+      <Link>WindowsAPICodePack\Resources\WinApi-Shell.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

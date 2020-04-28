@@ -1,0 +1,42 @@
+﻿<Window x:Class="DISM.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Main" Height="450" Width="800">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>Listo</StatusBarItem>
+        </StatusBar>
+        <Grid DockPanel.Dock="Top" Margin="0,0,0,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="125" />
+                <ColumnDefinition Width="auto" MinWidth="125" />
+                <ColumnDefinition Width="*" MinWidth="5" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Target="{Binding ElementName=imageTypeCB, Mode=OneWay}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,0,3,0">Tipo de imagen</Label>
+            <ComboBox Grid.Column="1" Name="imageTypeCB">
+                <ComboBoxItem IsSelected="True">WIM</ComboBoxItem>
+                <ComboBoxItem IsEnabled="False">VHD / VHDX</ComboBoxItem>
+                <ComboBoxItem IsEnabled="False">FFU</ComboBoxItem>
+                <ComboBoxItem>Sistema operativo actual</ComboBoxItem>
+            </ComboBox>
+
+        </Grid>
+        <ListBox DockPanel.Dock="Left">
+            <ListBoxItem>Información</ListBoxItem>
+            <ListBoxItem>Capturar carpeta</ListBoxItem>
+            <ListBoxItem>Unir imágenes</ListBoxItem>
+            <ListBoxItem>Aplicar imágen</ListBoxItem>
+            <ListBoxItem>Montar imágen</ListBoxItem>
+            <ListBoxItem>Desmontar imágen</ListBoxItem>
+        </ListBox>
+        <TabPanel>
+
+        </TabPanel>
+    </DockPanel>
+</Window>
